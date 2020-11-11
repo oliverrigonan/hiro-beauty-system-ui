@@ -1,0 +1,84 @@
+<div class="main-container" [class.main-is-mobile]="mediaQueryList.matches">
+
+    <!-- Menu Toolbar -->
+    <mat-toolbar color="" class="main-toolbar">
+        <button mat-icon-button (click)="buttonMenuToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img src="./../../assets/images/filbroker-logo/filbroker.png" height="25" class="main-logo">
+        <span class="toolbar-spacer"></span>
+        <button color="" mat-button [matMenuTriggerFor]="currentLoginUserMenu">
+            Username
+        </button>
+        <mat-menu #currentLoginUserMenu="matMenu" xPosition="after">
+            <button mat-menu-item>
+                Account
+            </button>
+            <button mat-menu-item>
+                Settings
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="buttonLogout()">
+                Logout
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+
+    <!-- Sidenav Container -->
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #snav [mode]="mediaQueryList.matches ? 'over' : 'side'" [fixedInViewport]="mediaQueryList.matches"
+            opened class="sidenav">
+
+            <!-- Menu List in Collapsable Panel -->
+            <mat-nav-list>
+                <mat-accordion>
+
+                    <mat-expansion-panel class="mat-elevation-z0" style="margin: 5px;" hideToggle>
+                        <mat-expansion-panel-header routerLink="/software" #dashboardPanelHeader
+                            (click)="dashboardPanelHeader._toggle()">
+                            <mat-panel-title>
+                                <img src="./../../assets/images/software-icons/dashboard.png" height="23" />
+                                &nbsp;&nbsp; Dashboard
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                    </mat-expansion-panel>
+
+                    <!-- <mat-expansion-panel class="mat-elevation-z0" style="margin: 5px;">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <img src="./../../assets/images/software-icons/broker.png" height="23" />
+                                &nbsp;&nbsp; Setup
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <mat-nav-list>
+                            <a mat-list-item routerLink="/software/setup-project-list"
+                                style="height: auto; padding: 10px 0px;">
+                                <img src="./../../assets/images/software-icons/project.png" height="30" />
+                                &nbsp;&nbsp; Customer
+                            </a>
+                        </mat-nav-list>
+                    </mat-expansion-panel> -->
+
+                    <mat-expansion-panel class="mat-elevation-z0" style="margin: 5px;" hideToggle>
+                        <mat-expansion-panel-header routerLink="/software" #settingsPanelHeader
+                            (click)="settingsPanelHeader._toggle()">
+                            <mat-panel-title>
+                                <img src="./../../assets/images/software-icons/settings.png" height="23" />
+                                &nbsp;&nbsp; Settings
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+            </mat-nav-list>
+
+        </mat-sidenav>
+
+        <!-- Where routes and components are loaded -->
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
